@@ -26,10 +26,6 @@ brew search '/font-.*-nerd-font/' | awk '{ print $1 }' | xargs -I{} brew install
 ### Neovimrc
 https://github.com/asashakira/neovimrc
 
-#### Arch Linux
-TODO
-
-
 
 ## Install
 
