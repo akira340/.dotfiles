@@ -27,3 +27,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # poetry
 export PATH="$HOME/.local/bin:$PATH"
+
+# neovim
+export PATH="$HOME/neovim/bin:$PATH"
