@@ -31,7 +31,7 @@ background = "0x1a1b26"
 foreground = "0xc0caf5"
 
 [font]
-size = 7
+size = 12
 
 [font.bold]
 family = "Hack Nerd Font"
