@@ -116,4 +116,3 @@ alias a="./a"
 
 # don't share history between terminals!!!
 unsetopt share_history
-eval "$(pyenv virtualenv-init -)"
