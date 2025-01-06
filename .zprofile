@@ -24,9 +24,9 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
-
 # poetry
 export PATH="$HOME/.local/bin:$PATH"
 
-# neovim
-export PATH="$HOME/neovim/bin:$PATH"
+# go
+export GOPATH="$HOME/.go"
+export PATH="$GOPATH/bin:$PATH"
