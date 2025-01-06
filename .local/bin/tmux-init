@@ -1,0 +1,3 @@
+#!/bin/bash
+tmux new -ds cp -c ~/cp
+tmux new -ds r -c ~
