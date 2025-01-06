@@ -22,6 +22,12 @@ set $menu fuzzel
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg ~/wallpapers/kindred1.jpg fill
+output eDP-1 pos 380 0 scale 1.25
+# output eDP-1 pos 0 1080
+# output DP-3 pos 0 0
+# output DP-3 transform 90
+output DP-3 pos 1920 0
+
 #
 # Example configuration:
 #
@@ -154,11 +160,11 @@ input type:keyboard {
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+    # bindsym $mod+b splith
+    # bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
+    # bindsym $mod+s layout stacking
     bindsym $mod+w layout tabbed
     bindsym $mod+e layout toggle split
 

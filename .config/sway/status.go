@@ -8,12 +8,12 @@ import (
 	"time"
 )
 
-func getCurrentTime() string {
+func currentTime() string {
 	t := time.Now().Local()
 	return t.Format("2006-01-02 15:04:05")
 }
 
-func getBattery() (string, string) {
+func battery() (string, string) {
 	data, err := os.ReadFile("/sys/class/power_supply/BAT0/status")
 	if err != nil {
 		fmt.Println(err)
@@ -29,7 +29,7 @@ func getBattery() (string, string) {
 	return status, capacity
 }
 
-func getVolume() string {
+func volume() string {
 	cmdstr := "amixer sget Master | grep 'Right:' | awk -F'[][]' '{print $4}'"
 	cmd := exec.Command("sh", "-c", cmdstr)
 	out, err := cmd.Output()
@@ -51,12 +51,12 @@ func getVolume() string {
 	return "VOL " + volume
 }
 
-func getWifi() string {
+func wifi() string {
 	// get wifi
-	cmdstr := "nmcli -t d | grep :connected: | grep wifi | awk -F'[:]' '{print $4}'"
+	cmdstr := "nmcli -t d | grep wlan0 |  grep :connected: | awk -F'[:]' '{print $4}'"
 	cmd := exec.Command("sh", "-c", cmdstr)
 	out, err := cmd.Output()
-	if err != nil {
+	if err != nil || len(out) < 1 {
 		return "<span color='red'>W: down</span>"
 	}
 	wifi := strings.TrimSpace(string(out))
@@ -69,9 +69,9 @@ func getWifi() string {
 	return fmt.Sprintf("<span color='green'>W: %v %v%%</span>", wifi, signal)
 }
 
-func getEthernet() string {
+func ethernet() string {
 	// get ethernet
-	cmdstr := "nmcli -t d | grep :connected: | grep ethernet"
+	cmdstr := "nmcli -t d | grep ethernet | grep :connected:"
 	cmd := exec.Command("sh", "-c", cmdstr)
 	_, err := cmd.Output()
 	if err != nil {
@@ -81,11 +81,11 @@ func getEthernet() string {
 }
 
 func main() {
-	current_time := getCurrentTime()
-	status, capacity := getBattery()
-	volume := getVolume()
-	wifi := getWifi()
-	ethernet := getEthernet()
+	currentTime := currentTime()
+	status, capacity := battery()
+	volume := volume()
+	wifi := wifi()
+	ethernet := ethernet()
 
-	fmt.Printf("%v | %v | %v |  %v %v%% | %v", wifi, ethernet, volume, status, capacity, current_time)
+	fmt.Printf("%v | %v | %v |  %v %v%% | %v", wifi, ethernet, volume, status, capacity, currentTime)
 }
